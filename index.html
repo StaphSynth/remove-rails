@@ -3,13 +3,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/removeRails.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
     <script type="text/javascript" src="/removeRails.js"></script>
   </head>
   <body ng-app="removeRails">
     <h1>Get some data in ya!</h1>
     <div ng-controller="removeRailsController as ctrl">
+      <ul>
+        <li ng-repeat="index in ctrl.surveyIndices">
+          <button class="surveyButton" ng-click="">{{ index.name }}</button>
+        </li>
+      </ul>
+      <div id="dataPresentationContainer">
 
+      </div> <!-- /dataPresentationContainer -->
     </div> <!-- /ng-controller -->
   </body>
 </html>
