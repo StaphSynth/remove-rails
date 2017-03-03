@@ -8,13 +8,11 @@ listApp.controller('removeRailsController', function($http){
   ctrl.getData = function(url, processData) {
     $http.get(ctrl.root + url)
       .then(function(response) {
-        if(response.status != 200) {
-          //report a status error
-        } else {
-          //do something useful with the data
-          processData(response.data);
-        }
-    });
+        processData(response.data);
+      })
+      .catch(function(response) {
+        alert('Data retrieval error\nCode: ' + response.status.toString());
+      });
   };
 
   ctrl.surveyIndex = function(data) {
