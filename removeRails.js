@@ -1,8 +1,9 @@
-var listApp = angular.module('removeRails', []);
+// var DataService = angular.module('DataService', []);
 
-listApp.controller('removeRailsController', function($http){
+var rrApp = angular.module('removeRails', []);
+
+rrApp.controller('removeRailsController', function(DataOp){
   var ctrl = this;
-  ctrl.root = 'http://127.0.0.1:8000';
   ctrl.surveyIndices = [];
   ctrl.surveyDetails = {
     name: null,
@@ -10,15 +11,17 @@ listApp.controller('removeRailsController', function($http){
     submittedResponseCount: null
   };
 
-  ctrl.getData = function(url, processData) {
-    $http.get(ctrl.root + url)
+  function getData(path, processData) {
+    DataOp.getData(path)
       .then(function(response) {
         processData(response.data);
       })
-      .catch(function(response) {
-        alert('Data retrieval error\nCode: ' + response.status.toString());
+      .catch(function(error) {
+        console.log(error);
+        alert('Error!\nCode: ' + error.status.toString() + '\n' + error.statusText);
       });
-  };
+
+  }
 
   ctrl.surveyIndex = function(data) {
     ctrl.surveyIndices = data.survey_results;
@@ -28,8 +31,21 @@ listApp.controller('removeRailsController', function($http){
     ctrl.surveyDetails.name = data.survey_result_detail.name;
     ctrl.surveyDetails.participantCount = data.survey_result_detail.participant_count;
     ctrl.surveyDetails.submittedResponseCount = data.survey_result_detail.submitted_response_count;
+
+    console.log(data);
   };
 
-  ctrl.getData('/index.json', ctrl.surveyIndex);
+  getData('/index.json', ctrl.surveyIndex);
 
+});
+
+rrApp.factory('DataOp', function($http) {
+  var urlRoot = 'http://127.0.0.1:8000';
+  var DataOp = {};
+
+  DataOp.getData = function(path) {
+    return $http.get(urlRoot + path);
+  };
+
+  return DataOp;
 });
