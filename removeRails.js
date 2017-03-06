@@ -1,4 +1,8 @@
-// var DataService = angular.module('DataService', []);
+/*
+* Remove Rails. A coding exercise to pretend to remove Rails from a data render pipeline and shift the burden to the client.
+* Written using AngularJS v1.6.2
+* By David Allen
+*/
 
 var rrApp = angular.module('removeRails', []);
 
