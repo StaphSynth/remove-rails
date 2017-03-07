@@ -12,10 +12,11 @@
       <p>{{ ctrl.surveyIndices().length + ' Surveys found, click to view.' }}</p>
       <ul>
         <li ng-repeat="index in ctrl.surveyIndices()">
-          <button class="surveyButton" ng-click="ctrl.getData(index.url, ctrl.constructDisplay)">{{ index.name }}</button>
+          <button class="surveyButton" ng-click="ctrl.loadSurvey(index.url)">{{ index.name }}</button>
         </li>
       </ul>
       <div id="dataPresentationContainer">
+        <div class="spinner"></div>
         <div class="surveyMeta">
           <span>Survey: </span><span ng-bind="ctrl.surveyDetails.name"></span>
           <span>Participants: </span><span ng-bind="ctrl.surveyDetails.participantCount"></span>
