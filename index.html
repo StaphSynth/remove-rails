@@ -9,12 +9,15 @@
   <body ng-app="removeRails">
     <h1>Get some data in ya!</h1>
     <div ng-controller="removeRailsController as ctrl">
-      <p>{{ ctrl.surveyIndices().length + ' Surveys found, click to view.' }}</p>
-      <ul>
-        <li ng-repeat="index in ctrl.surveyIndices()">
-          <button class="surveyButton" ng-click="ctrl.loadSurvey(index.url)">{{ index.name }}</button>
-        </li>
-      </ul>
+      <div class="metaPresentationContainer">
+        <div class="spinner" ng-show="!ctrl.surveyIndices()"></div>
+        <p>{{ ctrl.surveyIndices().length + ' Surveys found, click to view.' }}</p>
+        <ul>
+          <li ng-repeat="index in ctrl.surveyIndices()">
+            <button class="surveyButton" ng-click="ctrl.loadSurvey(index.url)">{{ index.name }}</button>
+          </li>
+        </ul>
+      </div> <!-- metaPresentationContainer -->
       <div id="dataPresentationContainer">
         <div class="spinner"></div>
         <div class="surveyMeta">
