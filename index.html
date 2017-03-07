@@ -9,8 +9,9 @@
   <body ng-app="removeRails">
     <h1>Get some data in ya!</h1>
     <div ng-controller="removeRailsController as ctrl">
+      <p>{{ ctrl.surveyIndices().length + ' Surveys found, click to view.' }}</p>
       <ul>
-        <li ng-repeat="index in ctrl.surveyIndices">
+        <li ng-repeat="index in ctrl.surveyIndices()">
           <button class="surveyButton" ng-click="ctrl.getData(index.url, ctrl.constructDisplay)">{{ index.name }}</button>
         </li>
       </ul>
