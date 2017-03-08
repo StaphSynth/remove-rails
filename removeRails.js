@@ -9,18 +9,18 @@ var rrApp = angular.module('removeRails', []);
 rrApp.controller('removeRailsController', function(DataOp){
   var ctrl = this;
 
-  DataOp.updateSurveyIndex('/index.json');
+  DataOp.updateSurveyIndex('index.json');
   ctrl.surveyIndices = DataOp.getSurveyIndex;
   ctrl.loading = DataOp.getLoadingStatus;
   ctrl.loadSurvey = function(url) {
     DataOp.fetchSurveyData(url);
   };
   ctrl.getSurveyData = DataOp.getSurveyData;
-  ctrl.testThemes = DataOp.getThemes;
 });
 
 rrApp.factory('DataOp', function($http) {
-  var urlRoot = 'http://127.0.0.1:8000';
+  // var urlRoot = 'http://127.0.0.1:8000';
+  var urlRoot = '';
   var surveyIndex = null;
   var surveyData = null;
   var loading = false;
@@ -66,11 +66,8 @@ rrApp.factory('DataOp', function($http) {
     var validResponses = 0;
     var collated_results = {
       average: null,
-      fives: 0,
-      fours: 0,
-      threes: 0,
-      twos: 0,
-      ones: 0
+      valueTotals: [0,0,0,0,0] //represents the total number of times 5-1 was selected
+      //(valueTotals[0] == 5, valueTotals[1] == 4, etc)
     };
 
     for(var i = 0; i < questionArray.length; i++) {
@@ -80,19 +77,19 @@ rrApp.factory('DataOp', function($http) {
         validResponses++;
         switch(responseTemp) {
           case 5:
-            collated_results.fives++;
+            collated_results.valueTotals[0]++;
             break;
           case 4:
-            collated_results.fours++;
+            collated_results.valueTotals[1]++;
             break;
           case 3:
-            collated_results.thees++;
+            collated_results.valueTotals[2]++;
             break;
           case 2:
-            collated_results.twos++;
+            collated_results.valueTotals[3]++;
             break;
           case 1:
-            collated_results.ones++;
+            collated_results.valueTotals[4]++;
             break;
         }
       }
