@@ -63,6 +63,18 @@ h1 {
   font-size: 2.5rem;
 }
 
+h2 {
+	font-size: 2rem;
+}
+
+.themeName {
+	font-size: 1.5rem;
+}
+
+.question {
+	border-bottom: solid 1px black;
+}
+
 .spinner {
     border: 8px solid #ddd;
     border-top: 8px solid dodgerblue;
