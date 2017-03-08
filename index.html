@@ -21,7 +21,7 @@
         </div> <!-- /indexPresentation -->
       </div> <!-- /indexPresentationContainer -->
       <div id="dataPresentationContainer">
-        <div class="spinner" ng-if="ctrl.loading() && ctrl.getSurveyData() == null"></div>
+        <div class="spinner" ng-if="ctrl.loading() && ctrl.getSurveyData() == null && ctrl.surveyIndices() != null"></div>
         <div class="surveyMeta" ng-if="ctrl.getSurveyData() != null">
           <span>Survey: </span><span ng-bind="ctrl.getSurveyData().name"></span>
           <span>Participants: </span><span ng-bind="ctrl.getSurveyData().participant_count"></span>
