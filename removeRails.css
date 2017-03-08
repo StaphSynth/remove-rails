@@ -82,3 +82,7 @@ h1 {
 		transform: rotate(360deg);
 	}
 }
+
+ul li {
+	margin: 1rem 0;
+}

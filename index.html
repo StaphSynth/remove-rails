@@ -20,9 +20,9 @@
           </ul>
         </div> <!-- /indexPresentation -->
       </div> <!-- /indexPresentationContainer -->
-      <div id="dataPresentationContainer">
-        <div class="spinner" ng-if="ctrl.loading() && ctrl.getSurveyData() == null && ctrl.surveyIndices() != null"></div>
-        <div class="surveyMeta" ng-if="ctrl.getSurveyData() != null">
+      <div class="spinner" ng-if="ctrl.loading() && ctrl.getSurveyData() == null && ctrl.surveyIndices() != null"></div>
+      <div id="dataPresentationContainer" ng-if="ctrl.getSurveyData() != null">
+        <div class="surveyMeta">
           <span>Survey: </span><span ng-bind="ctrl.getSurveyData().name"></span>
           <span>Participants: </span><span ng-bind="ctrl.getSurveyData().participant_count"></span>
           <span>Respondants: </span><span ng-bind="ctrl.getSurveyData().submitted_response_count"></span>
@@ -30,9 +30,18 @@
         </div> <!-- /surveyMeta -->
         <div class="surveyVisualContainer">
           <div class="surveyVisual">
+            <span>Themes:</span>
             <ul class="themes">
-              <!-- <li ng-repeat="theme in ">
-              </li> -->
+              <li ng-repeat="theme in ctrl.getSurveyData().themes">
+                <p class="themeName">{{ theme.name }}</p>
+                <ul>
+                  <li ng-repeat="question in theme.questions">
+                    <p>{{ question.description }}</p>
+                    <p>Results:</p>
+                    <p>{{ 'Average: ' + (question.collated_results.average | number: 2) }}</p>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </div> <!-- /surveyVisual -->
         </div> <!-- /surveyVisualContainer -->
