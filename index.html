@@ -30,14 +30,13 @@
         </div> <!-- /surveyMeta -->
         <div class="surveyVisualContainer">
           <div class="surveyVisual">
-            <span>Themes:</span>
+            <h2>Themes:</h2>
             <ul class="themes">
               <li ng-repeat="theme in ctrl.getSurveyData().themes">
                 <p class="themeName">{{ theme.name }}</p>
                 <ul>
-                  <li ng-repeat="question in theme.questions">
+                  <li class="question" ng-repeat="question in theme.questions">
                     <p>{{ question.description }}</p>
-                    <p>Results:</p>
                     <div class="graphicContainer">
                       <ul class="graphic">
                         <li ng-repeat="value in question.collated_results.valueTotals track by $index">
