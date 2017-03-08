@@ -99,7 +99,11 @@ ul li {
 	margin: 1rem 0;
 }
 
-.graphic li {
+.barGraph li {
 	display: inline-block;
 	padding: 0 2px;
+}
+
+.bar {
+	border-bottom: solid 1px dodgerblue;
 }

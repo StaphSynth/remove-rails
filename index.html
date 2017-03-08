@@ -38,9 +38,9 @@
                   <li class="question" ng-repeat="question in theme.questions">
                     <p>{{ question.description }}</p>
                     <div class="graphicContainer">
-                      <ul class="graphic">
-                        <li ng-repeat="value in question.collated_results.valueTotals track by $index">
-                          <div style="height: {{value}}px; width: 30px; background-color: dodgerblue;"></div>
+                      <ul class="barGraph" ng-if="question.question_type == 'ratingquestion'">
+                        <li ng-repeat="value in question.collated_results.relative_totals track by $index">
+                          <div class="bar" style="height: {{value}}px; width: 30px; background-color: dodgerblue;"></div>
                         </li>
                       </ul>
                     </div> <!-- /graphicContainer -->

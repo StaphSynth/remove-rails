@@ -52,7 +52,7 @@ rrApp.factory('DataOp', function($http) {
             surveyData.themes[i].questions[j].collated_results = ratingQuestionCrunch(surveyData.themes[i].questions[j].survey_responses);
             break;
           default:
-            console.log('Error in function dataCruch: invalid survey question type.');
+            console.log('Error in function dataCrunch: invalid survey question type.');
         }
       }
     }
@@ -62,14 +62,18 @@ rrApp.factory('DataOp', function($http) {
   //returns an object containing collated question data
   function ratingQuestionCrunch(questionArray) {
     var responseTemp = null;
+    var mostSelected;
     var responseTotal = 0;
     var validResponses = 0;
-    var collated_results = {
+
+    var collated_results = { //snake case to keep it the same as the JSON source
       average: null,
-      valueTotals: [0,0,0,0,0] //represents the total number of times 5-1 was selected
-      //(valueTotals[0] == 5, valueTotals[1] == 4, etc)
+      value_totals: [0,0,0,0,0], //represents the total number of times 5->1 was selected
+                                 //(valueTotals[0] == 5, valueTotals[1] == 4, etc)
+      relative_totals: [0,0,0,0,0] //relative values used for generating graphs, etc. Derived from value_totals
     };
 
+    //add up the total number of times a value was selected
     for(var i = 0; i < questionArray.length; i++) {
       if(questionArray[i].response_content) {
         responseTemp = parseInt(questionArray[i].response_content);
@@ -77,22 +81,28 @@ rrApp.factory('DataOp', function($http) {
         validResponses++;
         switch(responseTemp) {
           case 5:
-            collated_results.valueTotals[0]++;
+            collated_results.value_totals[0]++;
             break;
           case 4:
-            collated_results.valueTotals[1]++;
+            collated_results.value_totals[1]++;
             break;
           case 3:
-            collated_results.valueTotals[2]++;
+            collated_results.value_totals[2]++;
             break;
           case 2:
-            collated_results.valueTotals[3]++;
+            collated_results.value_totals[3]++;
             break;
           case 1:
-            collated_results.valueTotals[4]++;
+            collated_results.value_totals[4]++;
             break;
         }
       }
+    }
+
+    //figure out relative totals (sets largest value to 100, then the others to proportions of that figure)
+    mostSelected = Math.max.apply(Math, collated_results.value_totals);
+    for(var i = 0; i < collated_results.value_totals.length; i++) {
+      collated_results.relative_totals[i] = Math.round((collated_results.value_totals[i] / mostSelected) * 100);
     }
 
     collated_results.average = responseTotal / validResponses;
