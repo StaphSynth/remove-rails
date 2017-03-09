@@ -65,13 +65,15 @@ rrApp.factory('DataOp', function($http) {
     var mostSelected;
     var responseTotal = 0;
     var validResponses = 0;
-
-    var collated_results = { //snake case to keep it the same as the JSON source
+    var totalsArray = [];
+    var collatedResults = {
       average: null,
-      value_totals: [0,0,0,0,0], //represents the total number of times 5->1 was selected
-                                 //(valueTotals[0] == 5, valueTotals[1] == 4, etc)
-      relative_totals: [0,0,0,0,0] //relative values used for generating graphs, etc. Derived from value_totals
     };
+    //construct totals array to add to collated_results
+    for(var i = 0; i < 6; i++) {
+      totalsArray.push({raw: 0, proportional: 0});
+    }
+    collatedResults.totals = totalsArray;
 
     //add up the total number of times a value was selected
     for(var i = 0; i < questionArray.length; i++) {
@@ -79,34 +81,28 @@ rrApp.factory('DataOp', function($http) {
         responseTemp = parseInt(questionArray[i].response_content);
         responseTotal += responseTemp;
         validResponses++;
-        switch(responseTemp) {
-          case 5:
-            collated_results.value_totals[0]++;
-            break;
-          case 4:
-            collated_results.value_totals[1]++;
-            break;
-          case 3:
-            collated_results.value_totals[2]++;
-            break;
-          case 2:
-            collated_results.value_totals[3]++;
-            break;
-          case 1:
-            collated_results.value_totals[4]++;
-            break;
-        }
+        collatedResults.totals[responseTemp].raw++;
       }
     }
 
     //figure out relative totals (sets largest value to 100, then the others to proportions of that figure)
-    mostSelected = Math.max.apply(Math, collated_results.value_totals);
-    for(var i = 0; i < collated_results.value_totals.length; i++) {
-      collated_results.relative_totals[i] = Math.round((collated_results.value_totals[i] / mostSelected) * 100);
+    mostSelected = findMax(collatedResults.totals);
+    for(var i = 0; i < collatedResults.totals.length; i++) {
+      collatedResults.totals[i].proportional = Math.round((collatedResults.totals[i].raw / mostSelected) * 100);
     }
 
-    collated_results.average = responseTotal / validResponses;
-    return collated_results;
+    collatedResults.average = responseTotal / validResponses;
+    return collatedResults;
+  }
+
+  //returns the most selected value in array of survey responses
+  function findMax(totalsArray) {
+    var max = 0;
+    for(var i = 0; i < totalsArray.length; i++) {
+      if(totalsArray[i].raw > max)
+        max = totalsArray[i].raw;
+    }
+    return max;
   }
 
   return {
