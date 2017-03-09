@@ -10,7 +10,7 @@
     <h1>Get some data in ya!</h1>
     <div ng-controller="removeRailsController as ctrl">
       <div class="indexPresentationContainer">
-        <div class="spinner" ng-if="ctrl.loading() && ctrl.surveyIndices() == null"></div>
+        <script type="text/javascript">document.write('<div class="spinner" ng-if="ctrl.loading() && ctrl.surveyIndices() == null"></div>');</script>
         <div class="indexPresentation" ng-show="ctrl.surveyIndices()">
           <p>{{ ctrl.surveyIndices().length + ' Surveys found, click to view.' }}</p>
           <ul>
@@ -20,7 +20,7 @@
           </ul>
         </div> <!-- /indexPresentation -->
       </div> <!-- /indexPresentationContainer -->
-      <div class="spinner" ng-if="ctrl.loading() && ctrl.getSurveyData() == null && ctrl.surveyIndices() != null"></div>
+      <script type="text/javascript">document.write('<div class="spinner" ng-if="ctrl.loading() && ctrl.getSurveyData() == null && ctrl.surveyIndices() != null"></div>');</script>
       <div id="dataPresentationContainer" ng-if="ctrl.getSurveyData() != null">
         <div class="surveyMeta">
           <span>Survey: </span><span ng-bind="ctrl.getSurveyData().name"></span>
@@ -34,13 +34,13 @@
             <ul class="themes">
               <li ng-repeat="theme in ctrl.getSurveyData().themes">
                 <p class="themeName">{{ theme.name }}</p>
-                <ul>
+                <ul class="questions">
                   <li class="question" ng-repeat="question in theme.questions">
                     <p>{{ question.description }}</p>
                     <div class="graphicContainer">
                       <ul class="barGraph" ng-if="question.question_type == 'ratingquestion'">
-                        <li ng-repeat="value in question.collated_results.relative_totals track by $index">
-                          <div class="bar" style="height: {{value}}px; width: 30px; background-color: dodgerblue;"></div>
+                        <li ng-repeat="value in question.collated_results.totals">
+                          <div class="bar" style="height: {{value.proportional}}px; width: 30px; background-color: dodgerblue;"></div>
                         </li>
                       </ul>
                     </div> <!-- /graphicContainer -->
