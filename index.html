@@ -40,7 +40,7 @@
                     <div class="graphicContainer">
                       <ul class="barGraph" ng-if="question.question_type == 'ratingquestion'">
                         <li ng-repeat="value in question.collated_results.totals">
-                          <div class="bar" style="height: {{value.proportional}}px; width: 30px; background-color: dodgerblue;"></div>
+                          <div class="bar" style="height: {{value.proportional}}px; width: 30px; background-color: dodgerblue;"><span>{{value.raw}}</span></div>
                         </li>
                       </ul>
                     </div> <!-- /graphicContainer -->

@@ -105,10 +105,21 @@ h2 {
 	flex-direction: row;
 	align-items: flex-end;
 	margin: 0.5rem 0;
+
 }
 
 .barGraph li {
 	padding: 0 2px;
+	position: relative;
+}
+
+.barGraph li div span {
+	position: absolute;
+	bottom: 0;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	text-align: center;
 }
 
 .bar {
