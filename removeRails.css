@@ -174,7 +174,6 @@ SURVEY DATA
 
 .question {
 	text-align: center;
-	flex-grow: 1
 	max-width: 100%;
 	margin: 0.5rem;
 	padding: 0.5rem;
@@ -193,6 +192,8 @@ SURVEY DATA
 	flex-direction: row;
 	align-items: flex-end;
 	margin: 0.5rem auto;
+	border-bottom: solid 1px #000;
+	border-left: solid 1px #000;
 }
 
 .barGraph li {
@@ -211,7 +212,6 @@ SURVEY DATA
 
 .bar {
 	background-color: dodgerblue;
-	border-bottom: solid 1px dodgerblue;
 }
 
 
@@ -239,7 +239,7 @@ Tablets >=600px width
 
 
 /*-----------------------------------
-full desktop >=1050px width
+full desktop >=1100px width
 ------------------------------------*/
 
 @media screen and (min-width: 1100px) {
