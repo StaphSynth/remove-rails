@@ -98,13 +98,29 @@ GENERAL
 
 
 /*=========================
-HEADER
+FONTS/SIZES, etc
 =========================*/
+
+p, span, button, h1 {
+	font-family: 'Josefin Sans', sans-serif;
+	line-height: 1.25em;
+	font-size: 1.125rem;
+}
 
 h1 {
   font-size: 3rem;
+	font-weight: bold;
 	padding: 1.25rem;
 	text-align: center;
+	line-height: 1em;
+}
+
+.surveyNumber {
+	font-size: 1.5rem;
+}
+
+.themeName {
+	font-size: 2.25rem;
 }
 
 
@@ -147,7 +163,6 @@ SURVEY DATA
 }
 
 .themeName {
-	font-size: 1.5rem;
 	text-align: center;
 }
 
@@ -203,7 +218,7 @@ RESPONSIVE CSS
 ===================================================*/
 
 /*-----------------------------------
-Tablets >=500px width
+Tablets >=600px width
 ------------------------------------*/
 
 @media screen and (min-width: 600px) {

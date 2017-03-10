@@ -3,6 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/removeRails.css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
     <script type="text/javascript" src="/removeRails.js"></script>
   </head>
@@ -12,7 +13,7 @@
       <div class="indexPresentationContainer">
         <script type="text/javascript">document.write('<div class="spinner" ng-if="ctrl.loading() && ctrl.surveyIndices() == null"></div>');</script>
         <div class="indexPresentation" ng-show="ctrl.surveyIndices()">
-          <p>{{ ctrl.surveyIndices().length + ' Surveys found, click to view.' }}</p>
+          <p class="surveyNumber">{{ ctrl.surveyIndices().length + ' Surveys found, click to view.' }}</p>
           <ul class="surveyIndex">
             <li ng-repeat="index in ctrl.surveyIndices()">
               <button class="surveyButton" ng-click="ctrl.loadSurvey(index.url)">{{ index.name }}</button>
@@ -23,12 +24,13 @@
       <script type="text/javascript">document.write('<div class="spinner" ng-if="ctrl.loading() && ctrl.getSurveyData() == null && ctrl.surveyIndices() != null"></div>');</script>
       <div id="dataPresentationContainer" ng-if="ctrl.getSurveyData() != null">
         <div class="surveyMeta">
-          <span>Survey: </span><span ng-bind="ctrl.getSurveyData().name"></span>
-          <span>Participants: </span><span ng-bind="ctrl.getSurveyData().participant_count"></span>
-          <span>Respondents: </span><span ng-bind="ctrl.getSurveyData().submitted_response_count"></span>
-          <span>Response rate: </span><span>{{ ((ctrl.getSurveyData().submitted_response_count / ctrl.getSurveyData().participant_count) * 100 | number: 2) + '%' }}</span>
+          <p>
+            {{ 'Survey: ' + ctrl.getSurveyData().name + '; ' +
+            'Participants: ' + ctrl.getSurveyData().participant_count + '; ' +
+            'Respondents: ' + ctrl.getSurveyData().submitted_response_count + '; ' +
+            'Response rate: ' + ((ctrl.getSurveyData().submitted_response_count / ctrl.getSurveyData().participant_count) * 100 | number: 2) + '%' }}
+          </p>
         </div> <!-- /surveyMeta -->
-        <!-- <marquee> -->
         <div class="surveyVisualContainer">
           <div class="surveyVisual">
             <ul class="themes">
@@ -44,7 +46,7 @@
                             <div class="bar" style="height: {{ value.proportional }}px; width: 30px;"><span>{{ value.raw }}</span></div>
                           </li>
                         </ul>
-                      </div>
+                      </div> <!-- /bargraphContainer -->
                     </div> <!-- /graphicContainer -->
                     <p>{{ 'Average: ' + (question.collated_results.average | number: 2) }}</p>
                   </li>
@@ -54,7 +56,6 @@
           </div> <!-- /surveyVisual -->
         </div> <!-- /surveyVisualContainer -->
       </div> <!-- /dataPresentationContainer -->
-    <!-- </marquee> -->
     </div> <!-- /ng-controller -->
   </body>
 </html>
