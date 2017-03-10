@@ -25,9 +25,10 @@
         <div class="surveyMeta">
           <span>Survey: </span><span ng-bind="ctrl.getSurveyData().name"></span>
           <span>Participants: </span><span ng-bind="ctrl.getSurveyData().participant_count"></span>
-          <span>Respondants: </span><span ng-bind="ctrl.getSurveyData().submitted_response_count"></span>
+          <span>Respondents: </span><span ng-bind="ctrl.getSurveyData().submitted_response_count"></span>
           <span>Response rate: </span><span>{{ ((ctrl.getSurveyData().submitted_response_count / ctrl.getSurveyData().participant_count) * 100 | number: 2) + '%' }}</span>
         </div> <!-- /surveyMeta -->
+        <!-- <marquee> -->
         <div class="surveyVisualContainer">
           <div class="surveyVisual">
             <ul class="themes">
@@ -37,11 +38,13 @@
                   <li class="question" ng-repeat="question in theme.questions">
                     <p>{{ question.description }}</p>
                     <div class="graphicContainer {{ question.question_type }}">
-                      <ul class="barGraph" ng-if="question.question_type == 'ratingquestion'">
-                        <li ng-repeat="value in question.collated_results.totals">
-                          <div class="bar" style="height: {{ value.proportional }}px; width: 30px;"><span>{{ value.raw }}</span></div>
-                        </li>
-                      </ul>
+                      <div class="barGraphContainer">
+                        <ul class="barGraph" ng-if="question.question_type == 'ratingquestion'">
+                          <li ng-repeat="value in question.collated_results.totals">
+                            <div class="bar" style="height: {{ value.proportional }}px; width: 30px;"><span>{{ value.raw }}</span></div>
+                          </li>
+                        </ul>
+                      </div>
                     </div> <!-- /graphicContainer -->
                     <p>{{ 'Average: ' + (question.collated_results.average | number: 2) }}</p>
                   </li>
@@ -51,6 +54,7 @@
           </div> <!-- /surveyVisual -->
         </div> <!-- /surveyVisualContainer -->
       </div> <!-- /dataPresentationContainer -->
+    <!-- </marquee> -->
     </div> <!-- /ng-controller -->
   </body>
 </html>

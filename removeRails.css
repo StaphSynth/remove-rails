@@ -1,3 +1,11 @@
+/*=============================================================
+removeRails.css
+Stylesheet for AngularJS survey data display app, RemoveRails
+By David Allen 2017
+==============================================================*/
+
+
+
 /*=============================================
 Browser reset
 
@@ -62,7 +70,7 @@ GENERAL
 =========================*/
 
 .container {
-	max-width: 1024px;
+	max-width: 1000px;
 	margin: 0 auto;
 	padding: 3%;
 }
@@ -145,24 +153,28 @@ SURVEY DATA
 
 .questions {
 	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-around;
+	flex-direction: column;
 }
 
 .question {
-	min-width: 300px;
-	max-width: 300px;
+	text-align: center;
+	flex-grow: 1
+	max-width: 100%;
 	margin: 0.5rem;
 	padding: 0.5rem;
 	background-color: lightcyan;
+}
+
+.barGraphContainer {
+	max-width: 200px;
+	margin: 0 auto;
 }
 
 .barGraph {
 	display: flex;
 	flex-direction: row;
 	align-items: flex-end;
-	margin: 0.5rem 0;
-
+	margin: 0.5rem auto;
 }
 
 .barGraph li {
@@ -182,4 +194,39 @@ SURVEY DATA
 .bar {
 	background-color: dodgerblue;
 	border-bottom: solid 1px dodgerblue;
+}
+
+
+
+/*==================================================
+RESPONSIVE CSS
+===================================================*/
+
+/*-----------------------------------
+Tablets >=500px width
+------------------------------------*/
+
+@media screen and (min-width: 600px) {
+
+	.questions {
+		flex-flow: row wrap;
+	}
+
+	.question {
+		flex: 1 0 40%;
+	}
+}
+
+/* End 600px media query*/
+
+
+/*-----------------------------------
+full desktop >=1050px width
+------------------------------------*/
+
+@media screen and (min-width: 1100px) {
+		.question {
+			flex: 1 0 30%;
+			max-width: 30%;
+		}
 }
