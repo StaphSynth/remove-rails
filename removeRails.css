@@ -157,9 +157,10 @@ SURVEY DATA
 
 .theme {
 	background-color: lightskyblue;
-	margin: 1rem 0;
+	margin: 2rem 0;
 	padding: 1rem 0.5rem;
-
+	border-radius: 10px;
+	box-shadow: 2px 2px 5px #000;
 }
 
 .themeName {
@@ -178,11 +179,13 @@ SURVEY DATA
 	margin: 0.5rem;
 	padding: 0.5rem;
 	background-color: lightcyan;
+	box-shadow: 2px 2px 5px #000;
+	border-radius: 10px;
 }
 
 .barGraphContainer {
 	max-width: 200px;
-	margin: 0 auto;
+	margin: 0.25rem auto;
 }
 
 .barGraph {
