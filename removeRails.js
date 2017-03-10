@@ -70,18 +70,18 @@ rrApp.factory('DataOp', function($http) {
       average: null,
     };
     //construct totals array to add to collated_results
-    for(var i = 0; i < 6; i++) {
+    for(var i = 0; i < 5; i++) {
       totalsArray.push({raw: 0, proportional: 0});
     }
     collatedResults.totals = totalsArray;
 
     //add up the total number of times a value was selected
     for(var i = 0; i < questionArray.length; i++) {
-      if(questionArray[i].response_content) {
+      if(!(questionArray[i].response_content === "" || questionArray[i].response_content === "0")) {
         responseTemp = parseInt(questionArray[i].response_content);
         responseTotal += responseTemp;
         validResponses++;
-        collatedResults.totals[responseTemp].raw++;
+        collatedResults.totals[(responseTemp - 1)].raw++;
       }
     }
 
