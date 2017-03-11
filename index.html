@@ -38,7 +38,7 @@
                 <p class="themeName">{{ theme.name }}</p>
                 <ul class="questions">
                   <li class="question" ng-repeat="question in theme.questions">
-                    <p>{{ question.description }}</p>
+                    <p class="questionDescription">{{ question.description }}</p>
                     <div class="graphicContainer {{ question.question_type }}">
                       <div class="barGraphContainer">
                         <ul class="barGraph" ng-if="question.question_type == 'ratingquestion'">

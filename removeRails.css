@@ -173,6 +173,8 @@ SURVEY DATA
 }
 
 .question {
+	display: flex;
+	flex-direction: column;
 	text-align: center;
 	max-width: 100%;
 	margin: 0.5rem;
@@ -180,6 +182,10 @@ SURVEY DATA
 	background-color: lightcyan;
 	box-shadow: 2px 2px 5px #000;
 	border-radius: 10px;
+}
+
+.questionDescription {
+	flex-grow: 1;
 }
 
 .barGraphContainer {
