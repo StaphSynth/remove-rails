@@ -2,7 +2,7 @@
   <ul class="barGraph">
     <li ng-repeat="value in question.collated_results.totals track by $index">
       <div class="bar" style="height: {{ value.proportional }}px; width: 30px;">
-        <span class="rawData">{{ value.raw }}</span><span class="xAxisLabel">{{ $index + 1 }}</span>
+        <span class="rawData">{{ value.raw !== 0 ? value.raw : '' }}</span><span class="xAxisLabel">{{ $index + 1 }}</span>
       </div>
     </li>
   </ul>
