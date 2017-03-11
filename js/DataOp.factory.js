@@ -33,7 +33,9 @@ rrApp.factory('DataOp', function($http) {
             surveyData.themes[i].questions[j].question_type_template = '/templates/ratingQuestion.html'
             break;
           default:
-            console.log('Error in function dataCrunch: invalid survey question type.');
+            console.log('Error in function dataCrunch: "' +
+                        surveyData.themes[i].questions[j].question_type +
+                        '" is an invalid survey question type.');
         }
       }
     }
