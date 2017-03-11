@@ -42,8 +42,10 @@
                     <div class="graphicContainer {{ question.question_type }}">
                       <div class="barGraphContainer">
                         <ul class="barGraph" ng-if="question.question_type == 'ratingquestion'">
-                          <li ng-repeat="value in question.collated_results.totals">
-                            <div class="bar" style="height: {{ value.proportional }}px; width: 30px;"><span>{{ value.raw }}</span></div>
+                          <li ng-repeat="value in question.collated_results.totals track by $index">
+                            <div class="bar" style="height: {{ value.proportional }}px; width: 30px;">
+                              <span class="rawData">{{ value.raw }}</span><span class="xAxisLabel">{{ $index + 1 }}</span>
+                            </div>
                           </li>
                         </ul>
                       </div> <!-- /bargraphContainer -->
