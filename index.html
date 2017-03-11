@@ -39,18 +39,8 @@
                 <ul class="questions">
                   <li class="question" ng-repeat="question in theme.questions">
                     <p class="questionDescription">{{ question.description }}</p>
-                    <div class="graphicContainer {{ question.question_type }}">
-                      <div class="barGraphContainer">
-                        <ul class="barGraph" ng-if="question.question_type == 'ratingquestion'">
-                          <li ng-repeat="value in question.collated_results.totals track by $index">
-                            <div class="bar" style="height: {{ value.proportional }}px; width: 30px;">
-                              <span class="rawData">{{ value.raw }}</span><span class="xAxisLabel">{{ $index + 1 }}</span>
-                            </div>
-                          </li>
-                        </ul>
-                      </div> <!-- /bargraphContainer -->
+                    <div class="graphicContainer {{ question.question_type }}" ng-include="question.question_type_template">
                     </div> <!-- /graphicContainer -->
-                    <p>{{ 'Average: ' + (question.collated_results.average | number: 2) }}</p>
                   </li>
                 </ul>
               </li>

@@ -50,6 +50,7 @@ rrApp.factory('DataOp', function($http) {
         switch(surveyData.themes[i].questions[j].question_type) {
           case "ratingquestion":
             surveyData.themes[i].questions[j].collated_results = ratingQuestionCrunch(surveyData.themes[i].questions[j].survey_responses);
+            surveyData.themes[i].questions[j].question_type_template = '/templates/ratingQuestion.html'
             break;
           default:
             console.log('Error in function dataCrunch: invalid survey question type.');
