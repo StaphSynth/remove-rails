@@ -12,28 +12,26 @@
   <body ng-app="removeRails">
     <div class="container" ng-controller="removeRailsController as ctrl">
       <noscript><p class="nojsmsg">JavaScript appears to be disabled. Please <a href="http://www.enable-javascript.com/" target="_blank">enable JavaScript</a> to view the survey results.</p></noscript>
-      <h1>Survey Results</h1>
       <div class="indexPresentationContainer">
-        <script type="text/javascript">document.write('<div class="spinner" ng-if="ctrl.loading() && ctrl.surveyIndices() == null"></div>');</script>
+        <h1>Survey Results</h1>
+        <script type="text/javascript">document.write('<div class="spinner" ng-if="ctrl.loading() && ctrl.surveyIndices() === null"></div>');</script>
         <div class="indexPresentation" ng-show="ctrl.surveyIndices()">
           <p class="surveyNumber">{{ ctrl.surveyIndices().length + ' Surveys found, click to view.' }}</p>
           <ul class="surveyIndex">
             <li ng-repeat="index in ctrl.surveyIndices()">
-              <button class="surveyButton" ng-click="ctrl.loadSurvey(index.url)">{{ index.name }}</button>
+              <button class="surveyBtn" ng-class="{ 'selected': ctrl.selected === index.name }" ng-click="ctrl.pushButton(index.url, index.name)">{{ index.name }}</button>
             </li>
           </ul>
         </div> <!-- /indexPresentation -->
+        <p class="surveyMeta" ng-if="ctrl.getSurveyData() !== null">
+          {{ ctrl.getSurveyData().name + ': ' +
+          'Participants: ' + ctrl.getSurveyData().participant_count + '; ' +
+          'Respondents: ' + ctrl.getSurveyData().submitted_response_count + '; ' +
+          'Response rate: ' + ((ctrl.getSurveyData().submitted_response_count / ctrl.getSurveyData().participant_count) * 100 | number: 2) + '%' }}
+        </p>
       </div> <!-- /indexPresentationContainer -->
-      <script type="text/javascript">document.write('<div class="spinner" ng-if="ctrl.loading() && ctrl.getSurveyData() == null && ctrl.surveyIndices() != null"></div>');</script>
-      <div id="dataPresentationContainer" ng-if="ctrl.getSurveyData() != null">
-        <div class="surveyMeta">
-          <p>
-            {{ 'Survey: ' + ctrl.getSurveyData().name + '; ' +
-            'Participants: ' + ctrl.getSurveyData().participant_count + '; ' +
-            'Respondents: ' + ctrl.getSurveyData().submitted_response_count + '; ' +
-            'Response rate: ' + ((ctrl.getSurveyData().submitted_response_count / ctrl.getSurveyData().participant_count) * 100 | number: 2) + '%' }}
-          </p>
-        </div> <!-- /surveyMeta -->
+      <script type="text/javascript">document.write('<div class="spinner" ng-if="ctrl.loading() && ctrl.getSurveyData() === null && ctrl.surveyIndices() !== null"></div>');</script>
+      <div id="dataPresentationContainer" ng-if="ctrl.getSurveyData() !== null">
         <div class="surveyVisualContainer">
           <div class="surveyVisual">
             <ul class="themes">
