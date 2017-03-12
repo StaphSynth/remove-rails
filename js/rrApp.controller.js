@@ -1,13 +1,18 @@
 var rrApp = angular.module('removeRails', []);
 
-rrApp.controller('removeRailsController', function(DataOp){
+rrApp.controller('removeRailsController', function($location, DataOp){
   var ctrl = this;
 
-  DataOp.updateSurveyIndex('index.json');
   ctrl.surveyIndices = DataOp.getSurveyIndex;
   ctrl.loading = DataOp.getLoadingStatus;
-  ctrl.loadSurvey = function(url) {
-    DataOp.fetchSurveyData(url);
-  };
+  ctrl.selected = '';
   ctrl.getSurveyData = DataOp.getSurveyData;
+
+
+  ctrl.pushButton = function(url, name) {
+    DataOp.fetchSurveyData(url);
+    ctrl.selected = name;
+  };
+
+  DataOp.updateSurveyIndex('index.json');
 });
