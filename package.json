@@ -1,0 +1,26 @@
+{
+  "name": "remove-rails",
+  "version": "1.0.0",
+  "description": "A front-end data display coding exercise",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StaphSynth/remove-rails.git"
+  },
+  "author": "D. Allen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StaphSynth/remove-rails/issues"
+  },
+  "homepage": "https://github.com/StaphSynth/remove-rails#readme",
+  "devDependencies": {
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.5.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-firefox-launcher": "^1.0.1",
+    "karma-jasmine": "^1.1.0"
+  }
+}
