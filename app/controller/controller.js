@@ -1,5 +1,3 @@
-var rrApp = angular.module('removeRails', []);
-
 rrApp.controller('removeRailsController', function($location, DataOp){
   var ctrl = this;
 

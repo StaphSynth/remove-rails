@@ -6,8 +6,9 @@
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
     <!-- Obviously using a proper deployment pipeline to combine these .js files into a single entity would be necessary in production -->
-    <script type="text/javascript" src="app/js/rrApp.controller.js"></script>
-    <script type="text/javascript" src="app/js/DataOp.factory.js"></script>
+    <script type="text/javascript" src="/app.module.js"></script>
+    <script type="text/javascript" src="/controller/controller.js"></script>
+    <script type="text/javascript" src="/services/DataOp.factory.js"></script>
   </head>
   <body ng-app="removeRails">
     <div class="container" ng-controller="removeRailsController as ctrl">
