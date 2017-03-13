@@ -8,16 +8,19 @@ module.exports = function(config) {
     basePath: '',
 
 
+    // list of files / patterns to load in the browser
+    files: [
+      'node_modules/angular/angular.js',
+      'node_modules/angular-mocks/angular-mocks.js',
+      'app/*.js',
+      'app/controller/*.js',
+      'app/services/*.js'
+    ],
+
+
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
-
-
-    // list of files / patterns to load in the browser
-    files: [
-      // 'app/js/*.*.js',
-      'app/js/tests/*.spec.js'
-    ],
 
 
     // list of files to exclude
