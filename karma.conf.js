@@ -13,8 +13,10 @@ module.exports = function(config) {
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'app/*.js',
-      'app/controller/*.js',
-      'app/services/*.js'
+      'app/controller/*.controller.js',
+      'app/services/*.factory.js'
+      'app/controller/*.spec.js'
+      'app/services/*.spec.js'
     ],
 
 
