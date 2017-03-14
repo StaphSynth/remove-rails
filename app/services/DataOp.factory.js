@@ -21,20 +21,24 @@ rrApp.factory('DataOp', function($http) {
   }
 
   function dataCrunch() {
+    var surveyThemes = surveyData.themes;
+    var themeQuestions = [];
+
     //this should really throw an error
-    if(surveyData == null)
+    if(surveyThemes === null)
       return;
 
-    for(var i = 0; i < surveyData.themes.length; i++) {
-      for(var j = 0; j < surveyData.themes[i].questions.length; j++) {
-        switch(surveyData.themes[i].questions[j].question_type) {
+    for(var i = 0; i < surveyThemes.length; i++) {
+      themeQuestions = surveyThemes[i].questions;
+      for(var j = 0; j < themeQuestions.length; j++) {
+        switch(themeQuestions[j].question_type) {
           case "ratingquestion":
-            surveyData.themes[i].questions[j].collated_results = ratingQuestionCrunch(surveyData.themes[i].questions[j].survey_responses);
-            surveyData.themes[i].questions[j].question_type_template = '/templates/ratingQuestion.html';
+            themeQuestions[j].collated_results = ratingQuestionCrunch(themeQuestions[j].survey_responses);
+            themeQuestions[j].question_type_template = '/templates/ratingQuestion.html';
             break;
           default:
             console.log('Error in function dataCrunch: "' +
-                        surveyData.themes[i].questions[j].question_type +
+                        themeQuestions[j].question_type +
                         '" is an invalid survey question type.');
         }
       }
