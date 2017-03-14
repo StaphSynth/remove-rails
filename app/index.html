@@ -17,7 +17,7 @@
         <h1>Survey Results</h1>
         <script type="text/javascript">document.write('<div class="spinner" ng-if="ctrl.loading() && ctrl.surveyIndices() === null"></div>');</script>
         <div class="indexPresentation" ng-show="ctrl.surveyIndices()">
-          <p class="surveyNumber">{{ ctrl.surveyIndices().length > 0 ? ctrl.surveyIndices().length + ' Surveys found, click to view.' : 'No survey data found.' }}</p>
+          <p class="surveyNumber">{{ ctrl.getSurveyIndexText() }}</p>
           <ul class="surveyIndex">
             <li ng-repeat="index in ctrl.surveyIndices()">
               <button class="surveyBtn" ng-class="{ 'selected': ctrl.selected === index.name }" ng-click="ctrl.pushButton(index.url, index.name)">{{ index.name }}</button>
