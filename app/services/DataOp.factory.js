@@ -1,9 +1,23 @@
+/*==============================================================
+DataOp (dataoperations) factory service for remove-rails app
+
+Supplies data to the controller for display by the view
+
+By David Allen
+===============================================================*/
+
 rrApp.factory('DataOp', function($http) {
+
+  //factory 'globals'
   // var urlRoot = 'http://127.0.0.1:8000';
   var urlRoot = '';
   var surveyIndex = null;
   var surveyData = null;
   var loading = false;
+
+
+  /*getData does what it says on the tin. Makes an XHR for the JSON files
+  and calls the callback function to deal with the returned data*/
 
   function getData(path, callBack) {
     loading = true;
@@ -19,6 +33,13 @@ rrApp.factory('DataOp', function($http) {
         alert('Error!\nCode: ' + error.status.toString() + '\n' + error.statusText);
       });
   }
+
+
+
+  /*dataCrunch loops over the survey data and calls the appropriate function to deal
+  with each question type. It then inserts the returned collated data structure into
+  the theme object for the view, along with the location of the template to be called
+  for display */
 
   function dataCrunch() {
     var surveyThemes = surveyData.themes;
@@ -44,6 +65,8 @@ rrApp.factory('DataOp', function($http) {
       }
     }
   }
+
+
 
   //deals with "ratingquestion" type question arrays
   //returns an object containing collated question data
@@ -92,14 +115,20 @@ rrApp.factory('DataOp', function($http) {
     return max;
   }
 
+
+  //factory function returns (public methods)
   return {
-    updateSurveyIndex : function(path) {
+    //fetchers: give the controller control over the getting and processing of data
+
+    //fetch survey index data, takes a relative URL
+    fetchSurveyIndex : function(path) {
       surveyIndex = null;
       getData(urlRoot + path, function(data){
         surveyIndex = data.survey_results;
       });
     },
 
+    //fetches survey data. Takes a relative URL, calls dataCrunch to deal with results
     fetchSurveyData : function(url) {
       surveyData = null;
       getData(urlRoot + url, function(data) {
@@ -108,6 +137,7 @@ rrApp.factory('DataOp', function($http) {
       });
     },
 
+    //getters: Give the controller access to the service data
     getSurveyIndex : function() {
       return surveyIndex;
     },
