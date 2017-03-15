@@ -46,7 +46,7 @@ describe('E2E testing of the remove rails app', function() {
 
       surveyButtons.get(0).click();
       var surveyMeta0 = element(by.css('p.surveyMeta')).getText();
-      surveyButtons.get(0).click();
+      surveyButtons.get(1).click();
       var surveyMeta1 = element(by.css('p.surveyMeta')).getText();
 
       expect(surveyMeta0).not.toEqual(surveyMeta1);
