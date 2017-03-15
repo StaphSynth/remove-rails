@@ -12,7 +12,7 @@ describe('E2E testing of the remove rails app', function() {
     expect(element(by.css('h1')).getText()).toEqual('Survey Results');
   });
 
-  describe('Check that page elements load only after survey buttons are clicked', function() {
+  describe('Check that data presentation elements load only after survey buttons are clicked', function() {
     var surveyButtons;
 
     //get the list of survey buttons
@@ -40,6 +40,18 @@ describe('E2E testing of the remove rails app', function() {
 
       expect(element(by.css('div#dataPresentationContainer')).isPresent()).toBe(true);
     });
+
+    it('should not have the same meta data for different surveys', function() {
+      //click two buttons in turn, make sure they return different data
+
+      surveyButtons.get(0).click();
+      var surveyMeta0 = element(by.css('p.surveyMeta')).getText();
+      surveyButtons.get(0).click();
+      var surveyMeta1 = element(by.css('p.surveyMeta')).getText();
+
+      expect(surveyMeta0).not.toEqual(surveyMeta1);
+    });
+
   });
 
   describe('The correct mark-up template has been used to display data sets', function() {
