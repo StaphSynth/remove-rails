@@ -7,11 +7,12 @@ describe('E2E testing of the remove rails app', function() {
     browser.get('http://127.0.0.1:8000');
   });
 
-
+  //given the app has loaded, it should contain a heading
   it('should exist and contain a heading', function() {
     expect(element(by.css('h1')).getText()).toEqual('Survey Results');
   });
 
+  //given the app is at the index point, no data presentation elements should be visible
   describe('Check that data presentation elements load only after survey buttons are clicked', function() {
     var surveyButtons;
 
@@ -54,6 +55,7 @@ describe('E2E testing of the remove rails app', function() {
 
   });
 
+  //give question type 'a' exists, the mark-up should be for question type 'a'
   describe('The correct mark-up template has been used to display data sets', function() {
     var surveyButtons;
 
@@ -79,6 +81,5 @@ describe('E2E testing of the remove rails app', function() {
         }
       }
     });
-
   });
 });
