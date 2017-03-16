@@ -30,7 +30,13 @@ rrApp.factory('DataOp', function($http) {
       })
       .catch(function(error) {
         console.log(error);
-        alert('Error!\nCode: ' + error.status.toString() + '\n' + error.statusText);
+        if(error instanceof Error) {
+          alert('Error\n' + error.message);
+        } else if(error.status < 0) {
+          alert('Server error\nStatus: ' + error.status.toString());
+        } else {
+          alert('Error!\nCode: ' + error.status.toString() + '\n' + error.statusText);
+        }
       });
   }
 
