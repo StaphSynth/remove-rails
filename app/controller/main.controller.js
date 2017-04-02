@@ -8,7 +8,7 @@ datasets, etc.
 By David Allen
 ===============================================================*/
 
-rrApp.controller('removeRailsController', function($location, DataOp) {
+rrApp.controller('removeRailsController', function(DataOp) {
   var ctrl = this;
 
   //controller 'globals' accessed by the view.
